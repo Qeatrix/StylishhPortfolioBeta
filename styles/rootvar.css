@@ -1,0 +1,19 @@
+:root {
+  --descr-text: #e1e1e1;
+  --bg: #0c0e0e;
+  --bg-rgb: 14,18,18;
+  --light-text: #dbdbdb;
+  --purple-text: #682ae9;
+  --light-gray-text: #4c4c4c;
+  --gray-text: #888;
+}
+
+@font-face {
+  font-family: 'SF Pro Display'; /*a name to be used later*/
+  src: url('https://raw.githubusercontent.com/Qeatrix/StylishhPortfolio/main/fonts/SFPRODISPLAYREGULAR.OTF'); /*URL to font*/
+}
+
+@font-face {
+  font-family: 'SF Pro Display Medium'; /*a name to be used later*/
+  src: url('https://raw.githubusercontent.com/Qeatrix/StylishhPortfolio/main/fonts/SFPRODISPLAYMEDIUM.OTF'); /*URL to font*/
+}

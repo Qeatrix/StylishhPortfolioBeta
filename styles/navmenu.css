@@ -1,0 +1,95 @@
+.nav {
+  display: none;
+  position: fixed;
+  height: max-content;
+  max-width: max-content;
+  z-index: 101;
+  top: 50%;
+  right: 0;
+  left: 50%;
+  bottom: 0;
+  background-color: #0c0e0e;
+  border-radius: 30px;
+  transform: translate(-50%, -50%);
+}
+
+.nav_show-icon {
+  display: none;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  opacity: 1;
+  border-radius: 30px;
+  background: url(../assets/img/Icons/Menu.svg) no-repeat center #0c0e0e;
+  background-size: 1090px 470px;
+
+  z-index: 2;
+}
+
+/*
+.nav_toggle {
+  position: fixed;
+  left: calc(50% - 50px);
+  height: 30px;
+  width: 30px;
+  text-align: right;
+  font-size: 1.2em;
+  color: white;
+  background-color: #0e1212;
+
+  z-index: 101;
+}
+*/
+
+.nav_toggle {
+  position: fixed;
+  height: 35px;
+  width: 35px;
+  left: calc(50% - 17.5px);
+  top: 1em;
+  padding: 0.3em 0.4em 0.4em 0.47em;
+  color: #dadada;
+  cursor: pointer;
+  border-radius: 12px;
+  font-size: 1.2em;
+  line-height: 0.75;
+  background: url(../assets/img/Icons/Menu.svg) no-repeat center var(--bg);
+  background-size: cover;
+
+  z-index: 102;
+}
+
+
+.nav > ul {
+  display: flex;
+  justify-content: center;
+}
+
+.nav > ul > li {
+  display: block;
+  margin: 15px;
+  text-align: center;
+  background-color: #242424;
+  border-radius: 25px;
+}
+
+.nav > ul > li > a {
+   width: 200px;
+  height: 200px;
+  display: table-cell;
+  position: relative;
+  color: white;
+  text-decoration: none;
+}
+
+@media screen and (max-width: 400px) {
+    .nav > ul {
+      flex-wrap: wrap;
+    }
+}
+
+.menu_icon {
+  height: 100px;
+  width: 100%;
+  margin: 30px 0 20px 0
+}
