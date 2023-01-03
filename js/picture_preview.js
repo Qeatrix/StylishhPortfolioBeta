@@ -7,15 +7,10 @@ let isBusy = false;
 
 objects.forEach(el => el.addEventListener('click', event => {
 
-  console.log(isBusy);
-
   if (isBusy == false) {
 
     isBusy = true;
-
     let source_coords = el.getBoundingClientRect()
-    console.log(source_coords);
-    console.log(el);
 
     if (el.tagName == 'IMG') {
           
@@ -79,8 +74,6 @@ objects.forEach(el => el.addEventListener('click', event => {
       mode = 'video';
     }
     
-    console.log(preview_image.height);
-
     gsap.fromTo('.image_preview', 0.8,
       {css: {height: preview_image.style.height + 'px', width: preview_image.style.width + 'px', scale: 1}},
       {css: {height: '100%', width: '100%', scale: 0.9}, ease: "expo.out"});
@@ -90,9 +83,10 @@ objects.forEach(el => el.addEventListener('click', event => {
       {css: {top: 0, right: 0, bottom: 0, left: 0}, ease: "expo.out"});
 
     gsap.fromTo('.preview_container', 0.3,
-      {css: {opacity: 0}},
-      {css: {opacity: 1}, ease: Sine.in});
+      {css: {background: 'rgba(0.2, 0.2, 0.2, 0)'}},
+      {css: {background: 'rgba(0.2, 0.2, 0.2, 0.7)'}, ease: Sine.in});
 
+    console.log('Image Preview Loaded');
     if (mode == 'img') {
       preview_close.addEventListener('click', event => {
       /* 
@@ -114,6 +108,7 @@ objects.forEach(el => el.addEventListener('click', event => {
         preview_close.remove();
 
         isBusy = false;
+        console.log('Image Preview Unloaded');
       }, '150' ); 
 
     });
@@ -125,22 +120,26 @@ objects.forEach(el => el.addEventListener('click', event => {
           {css: {opacity: 1}, ease: Sine.in, delay: 0.25});
       });
 
-      video_close.addEventListener( 'click', () => {
-
-      gsap.fromTo('.preview_container', 0.3,
-        {css: {opacity: 1}},
-        {css: {opacity: 0}, ease: Sine.in});
+      video_close.addEventListener('mouseleave', () => {
+        gsap.fromTo('.video_close_text', 0.1,
+          {css: {opacity: 1}},
+          {css: {opacity: 0}, ease: Sine.in});
+      });
       
-      setTimeout (() => {
-        preview_container.remove();
-        preview_image.remove();
+      video_close.addEventListener( 'click', () => {
+        gsap.fromTo('.preview_container', 0.3,
+          {css: {opacity: 1}},
+          {css: {opacity: 0}, ease: Sine.in});
+        
+        setTimeout (() => {
+          preview_container.remove();
+          preview_image.remove();
 
-        isBusy = false;
-      }, '150' ); 
+          isBusy = false;
+          console.log('Image Preview Unloaded');
+        }, '150' ); 
       })
     }
-
-    console.log('Image Preview Unloaded');
 
   } else {
     console.log('Image Preview is Busy');

@@ -220,7 +220,7 @@ width: calc(100% - 35px);
   left: 50%;
   height: 100%;
   width: 100%;
-  opacity: 0;
+  opacity: 1;
   transform: translate(-50%, -50%);
   background: rgba(0.2, 0.2, 0.2, 0.7);
 
