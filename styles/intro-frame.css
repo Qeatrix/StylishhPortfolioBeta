@@ -96,6 +96,16 @@ html, body {
   border-radius: 15px;
   background: #dedede;
   text-decoration: none;
+
+  transition: all 0.5s;
+}
+
+.social_container_section:hover {
+  background: rgb(238, 238, 238);
+  scale: 1.075;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 20px 30px; 
+
+  transition: all 0.5s;
 }
 
 .social_container_section > img {
