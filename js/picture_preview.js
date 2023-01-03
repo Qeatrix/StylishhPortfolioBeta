@@ -14,6 +14,8 @@ objects.forEach(el => el.addEventListener('click', event => {
     isBusy = true;
 
     let source_coords = el.getBoundingClientRect()
+    console.log(source_coords);
+    console.log(el);
 
     if (el.tagName == 'IMG') {
           
@@ -65,13 +67,23 @@ objects.forEach(el => el.addEventListener('click', event => {
       video_close.append(video_close_text);
       document.body.append(preview_container);
       preview_container.append(preview_image);
+
+      preview_image.style.top = source_coords.top + 'px';
+      preview_image.style.right = source_coords.right + 'px';
+      preview_image.style.bottom = source_coords.bottom + 'px';
+      preview_image.style.left = source_coords.left + 'px';
+
+      preview_image.style.height = source_coords.height + 'px';
+      preview_image.style.width = source_coords.width + 'px';
     
       mode = 'video';
     }
+    
+    console.log(preview_image.height);
 
     gsap.fromTo('.image_preview', 0.8,
       {css: {height: preview_image.style.height + 'px', width: preview_image.style.width + 'px', scale: 1}},
-      {css: {height: '100%', width: '100%', scale: 0.8}, ease: "expo.out"});
+      {css: {height: '100%', width: '100%', scale: 0.9}, ease: "expo.out"});
 
     gsap.fromTo('.image_preview', 0.8,
       {css: {top: source_coords.top + 'px', right: source_coords.right + 'px', bottom: source_coords.bottom + 'px', left: source_coords.left + 'px'}},
@@ -81,7 +93,8 @@ objects.forEach(el => el.addEventListener('click', event => {
       {css: {opacity: 0}},
       {css: {opacity: 1}, ease: Sine.in});
 
-    preview_close.addEventListener('click', event => {
+    if (mode == 'img') {
+      preview_close.addEventListener('click', event => {
       /* 
       gsap.fromTo('.image_preview', 0.8,
       {css: {height: '100%', width: '100%', scale: 0.8}},
@@ -95,16 +108,40 @@ objects.forEach(el => el.addEventListener('click', event => {
         {css: {opacity: 1}},
         {css: {opacity: 0}, ease: Sine.in});
       
-     setTimeout (() => {
+      setTimeout (() => {
         preview_container.remove();
         preview_image.remove();
         preview_close.remove();
 
         isBusy = false;
-        }, '150' ); 
+      }, '150' ); 
 
-      console.log('Image Preview Unloaded');
     });
+
+    } else if (mode == 'video') {
+      video_close.addEventListener('mouseenter', () => {
+        gsap.fromTo('.video_close_text', 0.3,
+          {css: {opacity: 0}},
+          {css: {opacity: 1}, ease: Sine.in, delay: 0.25});
+      });
+
+      video_close.addEventListener( 'click', () => {
+
+      gsap.fromTo('.preview_container', 0.3,
+        {css: {opacity: 1}},
+        {css: {opacity: 0}, ease: Sine.in});
+      
+      setTimeout (() => {
+        preview_container.remove();
+        preview_image.remove();
+
+        isBusy = false;
+      }, '150' ); 
+      })
+    }
+
+    console.log('Image Preview Unloaded');
+
   } else {
     console.log('Image Preview is Busy');
   }

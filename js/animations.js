@@ -156,17 +156,28 @@ var controller = new ScrollMagic.Controller();
 
 function animateObjects(Trigger, ProjectName, ProjectDate, ProjectDescr) {
 
-  var tween = new TimelineMax()
-    .fromTo(ProjectName, 0.35,
-      {fontSize: "1em", color: COLOR_GRAY},
-      {fontSize: "2em", color: COLOR_WHITE, yoyo: true, ease: Power1.easeInOut})
-    .fromTo(ProjectDate, 0.35,
-      {marginLeft: 0, fontSize: "1em", letterSpacing: "0rem"},
-      {marginLeft: "5px", fontSize: "1.5em", letterSpacing: ".1rem", yoyo: true, ease: Power1.easeInOut, delay: -0.25})
-    .fromTo(ProjectDescr, 0.35,
-      {marginTop: "0px", fontSize: "1em", color: COLOR_GRAY_DARK},
-      {marginTop: "10px", fontSize: "1.15em", color: COLOR_GRAY_LIGHT, yoyo: true, ease: Power1.easeInOut, delay: -0.5}
-  );
+  if (screen.width > 360) {
+    var tween = new TimelineMax()
+      .fromTo(ProjectName, 0.35,
+        {fontSize: "1em", color: COLOR_GRAY},
+        {fontSize: "2em", color: COLOR_WHITE, yoyo: true, ease: Power1.easeInOut})
+      .fromTo(ProjectDate, 0.35,
+        {marginLeft: 0, fontSize: "1em", letterSpacing: "0rem"},
+        {marginLeft: "5px", fontSize: "1.5em", letterSpacing: ".1rem", yoyo: true, ease: Power1.easeInOut, delay: -0.25})
+      .fromTo(ProjectDescr, 0.35,
+        {marginTop: "0px", fontSize: "1em", color: COLOR_GRAY_DARK},
+        {marginTop: "10px", fontSize: "1.15em", color: COLOR_GRAY_LIGHT, yoyo: true, ease: Power1.easeInOut, delay: -0.5}
+    );
+  } else {
+    var tween = new TimelineMax()
+      .fromTo(ProjectName, 0.35,
+        {color: COLOR_GRAY},
+        {color: COLOR_WHITE, yoyo: true, ease: Power1.easeInOut})
+      .fromTo(ProjectDescr, 0.35,
+        {color: COLOR_GRAY_DARK},
+        {color: COLOR_GRAY_LIGHT, yoyo: true, ease: Power1.easeInOut, delay: -0.5}
+      );
+  }
 
   var scene = new ScrollMagic.Scene({
     triggerElement: Trigger,
@@ -188,5 +199,5 @@ function translateIDs() {
 
 translateIDs();
 startAnim();
-openMenuOld();
+// openMenuOld();
 

@@ -95,11 +95,6 @@ body {
   background: var(--purple-text) linear-gradient(180deg,var(--bg),rgba(var(--bg-rgb),0) 20vh);
 }
 
-@media screen and (max-width: 1024px)
-.wrapper:after {
-  left: 1rem;
-}
-
 .container {
   width: 85vw;
   /*padding: calc(50vh - 3.5rem) 0 0;*/
@@ -170,6 +165,55 @@ body {
   opacity: 0;
 }
 
+.video_close {
+  position: fixed;
+  height: 30px;
+  width: 30px;
+  top: 8%;
+  left: calc(50% - 15px);
+  background: url(../assets/img/Icons/Close.svg) no-repeat;
+  background-size: 30px;
+  background-color: white;
+  z-index: 101;
+  border-radius: 11.5px;
+  box-shadow: 0 0 60px #484848;
+  overflow: hidden;
+
+
+  user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+
+  transition: all 0.5s cubic-bezier(.23,1,.32,1);
+}
+
+.video_close:hover {
+  width:135px;
+  left: calc(50% - 61px);
+  cursor: default;
+  box-shadow: 0 0 60px #cecece;
+  opacity: 1;
+  scale: 1.3;
+
+  animation: hovershadow 1s infinite alternate;
+}
+
+.video_close:active {
+  scale: 1;
+
+  transition: all 0.2s in-ease-out;
+}
+
+.video_close_text {
+margin-left: 30px;
+font-size: 0.9em;
+inline-size: 122px;
+line-height: 30px;
+font-weight: 600;
+text-align: center;
+width: calc(100% - 35px);
+}
+
 .preview_container {
   position: fixed;
   top: 50%;
@@ -181,4 +225,11 @@ body {
   background: rgba(0.2, 0.2, 0.2, 0.7);
 
   z-index: 102;
+}
+
+
+@media screen and (max-width: 1024px) {
+  .wrapper:after {
+    left: 1rem;
+  }
 }
