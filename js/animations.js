@@ -3,6 +3,8 @@ const COLOR_GRAY = '#888';
 const COLOR_GRAY_LIGHT = '#4c4c4c';
 const COLOR_GRAY_DARK = '#333';
 
+const MIN_DISPLAY_WIDTH = 450;
+
 function startAnim() {
   const logo = document.getElementById('portfolio_logo');
   const mask = document.getElementById('mask_content');
@@ -31,13 +33,15 @@ function startAnim() {
   setTimeout(function() {
     mask.style.zIndex = 0;
 
-    gsap.fromTo('.spine-target', 1.5,
-      {css: {scale: 2, opacity: 0}},
-      {css: {scale: 1, opacity: 1}, ease: Expo.easeOut});
+    if (screen.width > MIN_DISPLAY_WIDTH) {
+      gsap.fromTo('.spine-target', 1.5,
+        {css: {scale: 2, opacity: 0}},
+        {css: {scale: 1, opacity: 1}, ease: Expo.easeOut});
 
-    gsap.fromTo('.spine', 3,
-      {css: {top: '50vh', opacity: 0}},
-      {css: {top: '45vh', opacity: 1}, ease: Expo.easeOut});
+      gsap.fromTo('.spine', 3,
+        {css: {top: '50vh', opacity: 0}},
+        {css: {top: '45vh', opacity: 1}, ease: Expo.easeOut});
+    }
   }, 1600);
 }
 
@@ -156,7 +160,7 @@ var controller = new ScrollMagic.Controller();
 
 function animateObjects(Trigger, ProjectName, ProjectDate, ProjectDescr) {
 
-  if (screen.width > 360) {
+  if (screen.width > MIN_DISPLAY_WIDTH) {
     var tween = new TimelineMax()
       .fromTo(ProjectName, 0.35,
         {fontSize: "1em", color: COLOR_GRAY},

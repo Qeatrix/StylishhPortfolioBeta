@@ -50,6 +50,7 @@ body {
   top: 45vh;
   bottom: 0;
   left: calc(9vw - 2rem);
+  opacity: 0;
   z-index: 2;
   width: 1px;
   background: var(--purple-text) linear-gradient(0deg,var(--bg) 1rem,rgba(var(--bg-rgb),0) 20vh);
@@ -63,6 +64,7 @@ body {
   width: 9px;
   height: 9px;
   z-index: 2;
+  opacity: 0;
 }
 
 .spine-target .circle, .spine-target .pulse {
@@ -229,7 +231,17 @@ width: calc(100% - 35px);
 
 
 @media screen and (max-width: 1024px) {
-  .wrapper:after {
+  .wrapper:after, .spine {
     left: 1rem;
+  }
+
+  .spine-target {
+    left: 0.8rem
+  }
+}
+
+@media (max-width: 450px) {
+  .wrapper:after, .spine, .spine-target {
+    opacity: 0;
   }
 }
